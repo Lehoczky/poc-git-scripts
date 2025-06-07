@@ -5,8 +5,6 @@ import c from "picocolors"
 const MAIN_BRANCH_NAME = "master"
 // const RELEASE_BRANCH_NAME = "release"
 
-// dummy
-
 const logger = createLogger()
 const git = simpleGit()
 
@@ -34,12 +32,11 @@ const mainBrachStatus = isStartingOnMainBranch
 
 if (mainBrachStatus.behind) {
   logger.log(
-    `Main branch is ${mainBrachStatus.behind} commits behind origin, updating...`
+    `Main branch is ${c.blue(mainBrachStatus.behind)} commit(s) behind origin, updating...`
   )
   // TODO: error handling for conflict
-  const pullResult = await git.pull()
-  const changes = pullResult.summary.changes
-  logger.success(`Pulled ${c.blue(changes)} changes from remote.`)
+  await git.pull()
+  logger.success(`Main branch has been updated`)
 } else {
   logger.success("Main branch is up to date")
 }
