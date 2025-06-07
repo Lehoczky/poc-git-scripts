@@ -5,6 +5,8 @@ import c from "picocolors"
 const MAIN_BRANCH_NAME = "master"
 // const RELEASE_BRANCH_NAME = "release"
 
+// dummy
+
 const logger = createLogger()
 const git = simpleGit()
 
