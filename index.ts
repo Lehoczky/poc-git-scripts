@@ -22,7 +22,7 @@ logger.log(`Detected local brach: ${c.blue(startingBranchName)}`)
 
 const isStartingOnMainBranch = startingBranchName === MAIN_BRANCH_NAME
 if (!isStartingOnMainBranch) {
-  logger.log(`Checking out ${c.blue(MAIN_BRANCH_NAME)}`)
+  logger.log(`Moving to ${c.blue(MAIN_BRANCH_NAME)} branch`)
   await git.checkout(MAIN_BRANCH_NAME)
 }
 
