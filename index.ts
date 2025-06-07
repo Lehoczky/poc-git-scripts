@@ -1,6 +1,8 @@
 import { exit } from "node:process"
 import { simpleGit } from "simple-git"
 
+// dummy
+
 const git = simpleGit()
 
 const status = await git.status()
