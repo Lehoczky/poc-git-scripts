@@ -12,17 +12,17 @@ const startingBranchStatus = await git.status()
 const hasUncommittedChanges = !startingBranchStatus.isClean()
 if (hasUncommittedChanges) {
   logger.error(
-    "Current branch has uncommitted changes. Please commit them before trying to create a new release."
+    "current branch has uncommitted changes. Please commit them before trying to create a new release."
   )
   exit(1)
 }
 
 const startingBranchName = startingBranchStatus.current
-logger.log(`Detected local brach: ${c.blue(startingBranchName)}`)
+logger.log(`detected local brach: ${c.blue(startingBranchName)}`)
 
 const isStartingOnMainBranch = startingBranchName === MAIN_BRANCH_NAME
 if (!isStartingOnMainBranch) {
-  logger.log(`Moving to ${c.blue(MAIN_BRANCH_NAME)} branch`)
+  logger.log(`moving to ${c.blue(MAIN_BRANCH_NAME)} branch`)
   await git.checkout(MAIN_BRANCH_NAME)
 }
 
@@ -32,13 +32,13 @@ const mainBrachStatus = isStartingOnMainBranch
 
 if (mainBrachStatus.behind) {
   logger.log(
-    `Main branch is ${c.blue(mainBrachStatus.behind)} commit(s) behind origin, updating...`
+    `${MAIN_BRANCH_NAME} branch is ${c.blue(mainBrachStatus.behind)} commit(s) behind origin, updating...`
   )
   // TODO: error handling for conflict
   await git.pull()
-  logger.success(`Main branch has been updated`)
+  logger.success(`${MAIN_BRANCH_NAME} branch has been updated`)
 } else {
-  logger.success("Main branch is up to date")
+  logger.success(`${MAIN_BRANCH_NAME} branch is up to date`)
 }
 
 function createLogger() {
