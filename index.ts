@@ -17,5 +17,12 @@ const currentBranch = status.current
 console.log(`Detected local brach: ${currentBranch}`)
 
 console.log("Updating current branch...")
-const a = await git.pull()
-console.log(a)
+// TODO: error handling for conflict
+const pullResult = await git.pull()
+const changes = pullResult.summary.changes
+const isBranchUpToDate = changes === 0
+if (isBranchUpToDate) {
+  console.log("Branch is up to date")
+} else {
+  console.log(`Pulled ${changes} changes from remote.`)
+}
