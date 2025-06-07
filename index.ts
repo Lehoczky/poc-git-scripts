@@ -2,6 +2,7 @@ import { exit } from "node:process"
 import { simpleGit } from "simple-git"
 
 // dummy
+// dummy
 
 const git = simpleGit()
 
